@@ -1,4 +1,6 @@
-[![CI](https://github.com/dmuharemagic/apicurio-registry-gradle-plugin/actions/workflows/ci.yml/badge.svg)](https://github.com/dmuharemagic/apicurio-registry-gradle-plugin/actions/workflows/ci.yml) [![codecov](https://codecov.io/github/dmuharemagic/apicurio-registry-gradle-plugin/branch/main/graph/badge.svg?token=DMXAKK77GW)](https://codecov.io/github/dmuharemagic/apicurio-registry-gradle-plugin)
+[![CI](https://github.com/dmuharemagic/apicurio-registry-gradle-plugin/actions/workflows/ci.yml/badge.svg)](https://github.com/dmuharemagic/apicurio-registry-gradle-plugin/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/github/dmuharemagic/apicurio-registry-gradle-plugin/branch/main/graph/badge.svg?token=DMXAKK77GW)](https://codecov.io/github/dmuharemagic/apicurio-registry-gradle-plugin)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://www.opensource.org/licenses/MIT)
 
 # Apicurio Schema Registry Gradle plugin
 
