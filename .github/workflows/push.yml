@@ -47,12 +47,20 @@ jobs:
           distribution: temurin
           java-version: ${{ matrix.java }}
 
-      - name: Build
+      - name: Build, run tests and generate code coverage reports
         uses: gradle/gradle-build-action@v2
         with:
           arguments: clean build
 
-      - name: Build documentation from Dokka
+      - name: Publish Kover coverage report
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          name: Aggregated Kover report
+          files: build/reports/kover/xml/report.xml
+
+      - name: Build Dokka
         uses: gradle/gradle-build-action@v2
         with:
           arguments: dokkaHtml
