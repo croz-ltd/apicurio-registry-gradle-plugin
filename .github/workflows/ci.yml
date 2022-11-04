@@ -1,4 +1,4 @@
-name: Build
+name: CI
 
 on:
   push:
@@ -6,11 +6,15 @@ on:
       - main
       - feature/*
       - bugfix/*
+    paths-ignore:
+      - '*.md'
   pull_request:
     branches:
       - main
       - feature/*
       - bugfix/*
+    paths-ignore:
+      - '*.md'
 
 jobs:
   build-and-deploy-documentation:
@@ -47,25 +51,45 @@ jobs:
           distribution: temurin
           java-version: ${{ matrix.java }}
 
-      - name: Build, run tests and generate code coverage reports
+      - name: Assemble
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: clean build
+          arguments: assemble testFixturesClasses testClasses functionalTestClasses --scan
 
-      - name: Publish Kover coverage report
+      - name: Run unit tests
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: test --scan
+
+      - name: Run functional tests
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: functionalTest --scan
+
+      - name: Generate test code coverage report
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: koverXmlReport --scan
+
+      - name: Publish test code coverage report
         if: ${{ matrix.os == 'ubuntu-latest' }}
         uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          name: Aggregated Kover report
+          name: Aggregated test code coverage report
           files: build/reports/kover/xml/report.xml
 
-      - name: Build Dokka
+      - name: Check binary API compatibility
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: dokkaHtml
+          arguments: apiCheck --scan
 
-      - name: Deploy documentation to GitHub Pages
+      - name: Build documentation
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: dokkaHtml --scan
+
+      - name: Publish documentation to GitHub Pages
         if: ${{ matrix.os == 'ubuntu-latest' && github.ref == 'refs/heads/main' && github.event_name == 'push' }}
         uses: JamesIves/github-pages-deploy-action@v4
         with:

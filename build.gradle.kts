@@ -80,14 +80,6 @@ tasks.withType<Copy>().all {
 }
 
 kover {
-    htmlReport {
-        onCheck.set(true)
-    }
-
-    xmlReport {
-        onCheck.set(true)
-    }
-
     verify {
         onCheck.set(true)
         rule {
