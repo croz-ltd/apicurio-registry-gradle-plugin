@@ -1,0 +1,8 @@
+type Query {
+    testById(id: ID): Test
+}
+
+type Test {
+    id: ID
+    name: String
+}

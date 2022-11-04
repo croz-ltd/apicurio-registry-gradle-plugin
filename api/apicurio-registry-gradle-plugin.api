@@ -1,0 +1,41 @@
+public class com/github/dmuharemagic/registry/SchemaRegistryExtension {
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
+	public final fun compatibility (Lorg/gradle/api/Action;)V
+	public final fun config (Lorg/gradle/api/Action;)V
+	public final fun download (Lorg/gradle/api/Action;)V
+	public final fun register (Lorg/gradle/api/Action;)V
+}
+
+public final class com/github/dmuharemagic/registry/SchemaRegistryPlugin : org/gradle/api/Plugin {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+}
+
+public class com/github/dmuharemagic/registry/extension/CompatibilityHandler {
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
+	public final fun artifact (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun artifact (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+}
+
+public class com/github/dmuharemagic/registry/extension/ConfigurationHandler {
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
+	public final fun auth (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun auth (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun url (Ljava/lang/String;)V
+}
+
+public class com/github/dmuharemagic/registry/extension/DownloadHandler {
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
+	public final fun artifact (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public static synthetic fun artifact$default (Lcom/github/dmuharemagic/registry/extension/DownloadHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
+}
+
+public class com/github/dmuharemagic/registry/extension/RegisterHandler {
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
+	public final fun artifact (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;)V
+	public final fun artifact (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;)V
+	public static synthetic fun artifact$default (Lcom/github/dmuharemagic/registry/extension/RegisterHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;ILjava/lang/Object;)V
+	public static synthetic fun artifact$default (Lcom/github/dmuharemagic/registry/extension/RegisterHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;ILjava/lang/Object;)V
+}
+

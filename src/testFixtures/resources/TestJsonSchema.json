@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://test.com/test.schema.json",
+  "title": "Test",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "The unique identifier",
+      "type": "integer"
+    },
+    "name": {
+      "description": "The name",
+      "type": "string"
+    }
+  }
+}

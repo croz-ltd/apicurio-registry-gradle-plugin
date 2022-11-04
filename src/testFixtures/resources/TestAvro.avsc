@@ -1,0 +1,14 @@
+{
+  "type": "record",
+  "name": "Test",
+  "fields": [
+    {
+      "name": "id",
+      "type": "long"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    }
+  ]
+}
