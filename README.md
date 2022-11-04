@@ -1,4 +1,4 @@
-[![CI](https://github.com/dmuharemagic/apicurio-registry-gradle-plugin/actions/workflows/push.yml/badge.svg?branch=main)](https://github.com/dmuharemagic/apicurio-registry-gradle-plugin/actions/workflows/push.yml)
+[![CI](https://github.com/dmuharemagic/apicurio-registry-gradle-plugin/actions/workflows/push.yml/badge.svg?branch=main)](https://github.com/dmuharemagic/apicurio-registry-gradle-plugin/actions/workflows/push.yml) [![codecov](https://codecov.io/github/dmuharemagic/apicurio-registry-gradle-plugin/branch/main/graph/badge.svg?token=DMXAKK77GW)](https://codecov.io/github/dmuharemagic/apicurio-registry-gradle-plugin)
 
 # Apicurio Schema Registry Gradle plugin
 
