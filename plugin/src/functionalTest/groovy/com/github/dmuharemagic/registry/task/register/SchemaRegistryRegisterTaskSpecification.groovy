@@ -24,7 +24,7 @@ class SchemaRegistryRegisterTaskSpecification extends AbstractFunctionalSpecific
                     url("$schemaRegistryUrl")
                 }
                 register {
-                    artifact(artifactId = "$metadata.artifactId", name = "$metadata.name", artifactType = "$artifactTypeName", path = "$metadata.outputPath")
+                    artifact(artifactId = "$metadata.artifactId", name = "$metadata.name", type = "$artifactTypeName", path = "$metadata.outputPath")
                 }
             }
         """
@@ -47,7 +47,7 @@ class SchemaRegistryRegisterTaskSpecification extends AbstractFunctionalSpecific
                     url("$schemaRegistryUrl")
                 }
                 register {
-                    artifact(artifactId = "$metadata.artifactId", name = "$metadata.name", artifactType = "$artifactTypeName", path = "$metadata.outputPath")
+                    artifact(artifactId = "$metadata.artifactId", name = "$metadata.name", type = "$artifactTypeName", path = "$metadata.outputPath")
                 }
             }
         """
@@ -70,7 +70,7 @@ class SchemaRegistryRegisterTaskSpecification extends AbstractFunctionalSpecific
                     url("$schemaRegistryUrl")
                 }
                 register {
-                    artifact(artifactId = "$metadata.artifactId", name = "$metadata.name", artifactType = "$artifactTypeName", path = "${artifactFile.toAbsolutePath().toString()}")
+                    artifact(artifactId = "$metadata.artifactId", name = "$metadata.name", type = "$artifactTypeName", path = "${artifactFile.toAbsolutePath().toString()}")
                 }
             }
         """
@@ -98,7 +98,7 @@ class SchemaRegistryRegisterTaskSpecification extends AbstractFunctionalSpecific
                     url("$schemaRegistryUrl")
                 }
                 register {
-                    artifact(groupId = "$metadata.groupId", artifactId = "$metadata.artifactId", name = "$metadata.name", artifactType = "$artifactTypeName", path = "${artifactFile.toAbsolutePath().toString()}")
+                    artifact(groupId = "$metadata.groupId", artifactId = "$metadata.artifactId", name = "$metadata.name", type = "$artifactTypeName", path = "${artifactFile.toAbsolutePath().toString()}")
                 }
             }
         """

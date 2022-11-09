@@ -11,7 +11,7 @@ schemaRegistry {
             groupId = "test",
             artifactId = "person",
             name = "Person",
-            artifactType = "AVRO",
+            type = "AVRO",
             path = "example/support/schema/Person.avsc"
         )
     }
