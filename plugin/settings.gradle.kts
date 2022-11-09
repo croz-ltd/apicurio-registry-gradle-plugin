@@ -1,7 +1,3 @@
-plugins {
-    id("com.gradle.enterprise") version "3.11.4"
-}
-
 rootProject.name = "plugin"
 
 dependencyResolutionManagement {
@@ -12,13 +8,5 @@ dependencyResolutionManagement {
         create("libs") {
             from(files("../gradle/libs.versions.toml"))
         }
-    }
-}
-
-gradleEnterprise {
-    buildScan {
-        publishAlways()
-        termsOfServiceUrl = "https://gradle.com/terms-of-service"
-        termsOfServiceAgree = "yes"
     }
 }

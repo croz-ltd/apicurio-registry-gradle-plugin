@@ -8,13 +8,6 @@ on:
       - bugfix/*
     paths-ignore:
       - '*.md'
-  pull_request:
-    branches:
-      - main
-      - feature/*
-      - bugfix/*
-    paths-ignore:
-      - '*.md'
 
 jobs:
   build-and-deploy-documentation:
