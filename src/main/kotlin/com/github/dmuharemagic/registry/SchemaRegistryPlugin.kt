@@ -9,7 +9,6 @@ import com.github.dmuharemagic.registry.task.register.SchemaRegistryRegisterTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
-
 /**
  * The entrypoint for this plugin.
  *
@@ -24,15 +23,14 @@ class SchemaRegistryPlugin : Plugin<Project> {
     override fun apply(project: Project) = project.run {
         val schemaRegistry = schemaRegistry()
 
-        applyService(project, schemaRegistry)
-        applyTasks(project, schemaRegistry)
+        applyService(schemaRegistry)
+        applyTasks(schemaRegistry)
     }
 
     private fun Project.applyService(
-        project: Project,
         schemaRegistry: SchemaRegistryExtension
     ) {
-        val schemaRegistryClientServiceProvider = SchemaRegistryClientService.register(project, schemaRegistry)
+        val schemaRegistryClientServiceProvider = SchemaRegistryClientService.register(this, schemaRegistry)
 
         tasks.withType(SchemaRegistryTask::class.java).configureEach { task ->
             task.schemaRegistryClientService.set(schemaRegistryClientServiceProvider)
@@ -40,12 +38,11 @@ class SchemaRegistryPlugin : Plugin<Project> {
         }
     }
 
-    private fun applyTasks(
-        project: Project,
+    private fun Project.applyTasks(
         schemaRegistry: SchemaRegistryExtension
     ) {
-        SchemaRegistryDownloadTask.register(project, schemaRegistry.download)
-        SchemaRegistryRegisterTask.register(project, schemaRegistry.register)
-        SchemaRegistryCompatibilityTask.register(project, schemaRegistry.compatibility)
+        SchemaRegistryDownloadTask.register(this, schemaRegistry.download)
+        SchemaRegistryRegisterTask.register(this, schemaRegistry.register)
+        SchemaRegistryCompatibilityTask.register(this, schemaRegistry.compatibility)
     }
 }
