@@ -12,7 +12,7 @@ schemaRegistry {
             artifactId = "person",
             name = "Person",
             type = "AVRO",
-            path = "example/support/schema/Person.avsc"
+            path = "support/schema/Person.avsc"
         )
     }
 }

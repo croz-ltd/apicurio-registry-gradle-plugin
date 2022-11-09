@@ -40,7 +40,7 @@ internal abstract class SchemaRegistryRegisterTask @Inject constructor(factory: 
     fun register() {
         val errorCount = SchemaRegistryRegisterTaskAction(
             schemaRegistryClientService.get().client,
-            project.rootDir.toPath(),
+            project.projectDir.toPath(),
             actionList.getOrElse(listOf())
         ).run()
 

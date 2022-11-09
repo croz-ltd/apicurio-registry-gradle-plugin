@@ -45,7 +45,7 @@ internal abstract class SchemaRegistryCompatibilityTask @Inject constructor(fact
     fun compatibility() {
         val errorCount = SchemaRegistryCompatibilityTaskAction(
             schemaRegistryClientService.get().client,
-            project.rootDir.toPath(),
+            project.projectDir.toPath(),
             actionList.getOrElse(listOf())
         ).run()
 
