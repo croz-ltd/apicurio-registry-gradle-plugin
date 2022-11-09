@@ -40,7 +40,7 @@ internal abstract class SchemaRegistryDownloadTask @Inject constructor(factory: 
     fun download() {
         val errorCount = SchemaRegistryDownloadTaskAction(
             schemaRegistryClientService.get().client,
-            project.rootDir.toPath(),
+            project.projectDir.toPath(),
             actionList.getOrElse(listOf())
         ).run()
 
