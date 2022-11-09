@@ -20,8 +20,8 @@ jobs:
   build-and-deploy-documentation:
     strategy:
       matrix:
-        java: ["17"]
-        os: [ubuntu-latest]
+        java: [ "17" ]
+        os: [ ubuntu-latest ]
 
     runs-on: ${{ matrix.os }}
     name: ${{ matrix.os }} - JDK ${{ matrix.java }}
@@ -38,6 +38,7 @@ jobs:
           key: ${{ matrix.java }}-${{ matrix.os }}-gradle-caches-${{ hashFiles('**/*.gradle') }}
           restore-keys: |
             ${{ matrix.java }}-${{ matrix.os }}-gradle-caches-
+
       - name: Cache Gradle wrapper
         uses: actions/cache@v3
         with:
@@ -45,6 +46,7 @@ jobs:
           key: ${{ matrix.java }}-${{ matrix.os }}-gradle-wrapper-${{ hashFiles('**/*.gradle') }}
           restore-keys: |
             ${{ matrix.java }}-${{ matrix.os }}-gradle-wrapper-
+
       - name: Set up JDK ${{ matrix.java }}
         uses: actions/setup-java@v3
         with:
@@ -54,45 +56,45 @@ jobs:
       - name: Assemble
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: assemble testFixturesClasses testClasses functionalTestClasses --scan
+          arguments: :plugin:assemble :plugin:testFixturesClasses :plugin:testClasses :plugin:functionalTestClasses --scan
 
       - name: Run unit tests
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: test --scan
+          arguments: :plugin:test --scan
 
       - name: Run functional tests
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: functionalTest --scan
+          arguments: :plugin:functionalTest --scan
 
       - name: Generate test code coverage report
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: koverXmlReport --scan
+          arguments: :plugin:koverXmlReport --scan
 
       - name: Publish test code coverage report
-        if: ${{ matrix.os == 'ubuntu-latest' }}
         uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           name: Aggregated test code coverage report
-          files: build/reports/kover/xml/report.xml
+          files: plugin/build/reports/kover/xml/report.xml
 
       - name: Check binary API compatibility
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: apiCheck --scan
+          arguments: :plugin:apiCheck --scan
 
       - name: Build documentation
+        if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: dokkaHtml --scan
+          arguments: :plugin:dokkaHtml --scan
 
       - name: Publish documentation to GitHub Pages
-        if: ${{ matrix.os == 'ubuntu-latest' && github.ref == 'refs/heads/main' && github.event_name == 'push' }}
+        if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: build/dokka/html
+          folder: plugin/build/dokka/html
           clean: true
           single-commit: true

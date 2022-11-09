@@ -9,7 +9,6 @@ plugins {
     id("groovy")
     id("java-gradle-plugin")
     id("java-test-fixtures")
-    id("maven-publish")
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.dokka)
     alias(libs.plugins.kotlinx.kover)
@@ -18,10 +17,10 @@ plugins {
 
 // Dependencies
 dependencies {
-    implementation(libs.apicurioRegistryClient)
+    implementation(libs.apicurio.client)
 
-    testFixturesApi(libs.apicurioRegistryClient)
-    testFixturesImplementation(libs.spockTestContainers)
+    testFixturesApi(libs.apicurio.client)
+    testFixturesImplementation(libs.spock.testContainers)
 }
 
 // Compile
@@ -48,7 +47,7 @@ testing {
 
             useSpock(libs.versions.spock.get())
             dependencies {
-                implementation(libs.bundles.functionalTestDependencies)
+                implementation(libs.spock.testContainers)
                 implementation(project.dependencies.testFixtures(project))
             }
 
@@ -116,14 +115,6 @@ gradlePlugin {
     }
 
     testSourceSets(sourceSets.getByName("functionalTest"))
-}
-
-// Publish
-// Local Maven Publish - to be deleted
-publishing {
-    repositories {
-        mavenLocal()
-    }
 }
 
 // TODO: uncomment this and setup publishing

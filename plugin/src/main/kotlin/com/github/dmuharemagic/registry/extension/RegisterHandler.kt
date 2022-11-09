@@ -24,7 +24,7 @@ open class RegisterHandler @Inject constructor(factory: ObjectFactory) {
      * @param groupId The specific group ID which is to be assigned to this artifact on the schema registry.
      * @param artifactId The specific artifact ID which is to be assigned to this artifact on the schema registry.
      * @param name The name of the artifact.
-     * @param artifactType The artifact type which matches the local artifact file. See [ArtifactType] for supported values.
+     * @param type The artifact type which matches the local artifact file. See [ArtifactType] for supported values.
      * @param path The directory where the local artifact file is located in.
      * @param description An optional description which is to be assigned to the artifact.
      * @param version An optional version which is to be correlated with the artifact.
@@ -35,7 +35,7 @@ open class RegisterHandler @Inject constructor(factory: ObjectFactory) {
         groupId: String,
         artifactId: String,
         name: String,
-        artifactType: String,
+        type: String,
         path: String,
         description: String? = null,
         version: String? = null,
@@ -49,7 +49,7 @@ open class RegisterHandler @Inject constructor(factory: ObjectFactory) {
                 version = version,
                 name = name,
                 description = description,
-                artifactType = ArtifactType.fromName(artifactType),
+                artifactType = ArtifactType.fromName(type),
                 canonicalize = canonicalize,
                 conflictHandleType = if (conflictHandleType != null) {
                     ConflictHandleType.fromName(conflictHandleType)
@@ -67,7 +67,7 @@ open class RegisterHandler @Inject constructor(factory: ObjectFactory) {
      *
      * @param artifactId The specific artifact ID which is to be assigned to this artifact on the schema registry.
      * @param name The name of the artifact.
-     * @param artifactType The artifact type which matches the local artifact file. See [ArtifactType] for supported values.
+     * @param type The artifact type which matches the local artifact file. See [ArtifactType] for supported values.
      * @param path The directory where the local artifact file is located in.
      * @param description An optional description which is to be assigned to the artifact.
      * @param version An optional version which is to be correlated with the artifact.
@@ -77,7 +77,7 @@ open class RegisterHandler @Inject constructor(factory: ObjectFactory) {
     fun artifact(
         artifactId: String,
         name: String,
-        artifactType: String,
+        type: String,
         path: String,
         description: String? = null,
         version: String? = null,
@@ -90,7 +90,7 @@ open class RegisterHandler @Inject constructor(factory: ObjectFactory) {
                 version = version,
                 name = name,
                 description = description,
-                artifactType = ArtifactType.fromName(artifactType),
+                artifactType = ArtifactType.fromName(type),
                 canonicalize = canonicalize,
                 conflictHandleType = if (conflictHandleType != null) {
                     ConflictHandleType.fromName(conflictHandleType)
