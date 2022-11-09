@@ -1,4 +1,4 @@
 rootProject.name = "apicurio-registry-gradle-plugin"
 
-include("example")
+include("sample")
 includeBuild("plugin")
