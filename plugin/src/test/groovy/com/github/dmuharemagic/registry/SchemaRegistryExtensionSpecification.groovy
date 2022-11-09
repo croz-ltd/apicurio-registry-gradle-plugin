@@ -36,7 +36,7 @@ class SchemaRegistryExtensionSpecification extends Specification {
         })
 
         then:
-        extension.config$apicurio_registry_gradle_plugin.url$apicurio_registry_gradle_plugin.get() == url
+        extension.config$plugin.url$plugin.get() == url
     }
 
     def "should set basic authentication details through configuration handler"() {
@@ -53,7 +53,7 @@ class SchemaRegistryExtensionSpecification extends Specification {
         })
 
         then:
-        Authentication authenticationContext = extension.config$apicurio_registry_gradle_plugin.authentication$apicurio_registry_gradle_plugin.get()
+        Authentication authenticationContext = extension.config$plugin.authentication$plugin.get()
         authenticationContext
         authenticationContext instanceof Authentication.Basic
         def castedAuthenticationContext = authenticationContext as Authentication.Basic
@@ -76,7 +76,7 @@ class SchemaRegistryExtensionSpecification extends Specification {
         })
 
         then:
-        Authentication authenticationContext = extension.config$apicurio_registry_gradle_plugin.authentication$apicurio_registry_gradle_plugin.get()
+        Authentication authenticationContext = extension.config$plugin.authentication$plugin.get()
         authenticationContext
         authenticationContext instanceof Authentication.OAuth
         def castedAuthenticationContext = authenticationContext as Authentication.OAuth
@@ -98,7 +98,7 @@ class SchemaRegistryExtensionSpecification extends Specification {
         })
 
         then:
-        def artifactCommandList = extension.download$apicurio_registry_gradle_plugin.actionList$apicurio_registry_gradle_plugin.get()
+        def artifactCommandList = extension.download$plugin.actionList$plugin.get()
         artifactCommandList != null
         artifactCommandList.size() == 1
         artifactCommandList.every {
@@ -126,7 +126,7 @@ class SchemaRegistryExtensionSpecification extends Specification {
         })
 
         then:
-        def artifactCommandList = extension.register$apicurio_registry_gradle_plugin.actionList$apicurio_registry_gradle_plugin.get()
+        def artifactCommandList = extension.register$plugin.actionList$plugin.get()
         artifactCommandList != null
         artifactCommandList.size() == 1
         artifactCommandList.every {
@@ -163,7 +163,7 @@ class SchemaRegistryExtensionSpecification extends Specification {
         })
 
         then:
-        def artifactCommandList = extension.register$apicurio_registry_gradle_plugin.actionList$apicurio_registry_gradle_plugin.get()
+        def artifactCommandList = extension.register$plugin.actionList$plugin.get()
         artifactCommandList != null
         artifactCommandList.size() == 1
         artifactCommandList.every {
@@ -197,7 +197,7 @@ class SchemaRegistryExtensionSpecification extends Specification {
         })
 
         then:
-        def artifactCommandList = extension.compatibility$apicurio_registry_gradle_plugin.actionList$apicurio_registry_gradle_plugin.get()
+        def artifactCommandList = extension.compatibility$plugin.actionList$plugin.get()
         artifactCommandList != null
         artifactCommandList.size() == 1
         artifactCommandList.every {
@@ -220,7 +220,7 @@ class SchemaRegistryExtensionSpecification extends Specification {
         })
 
         then:
-        def artifactCommandList = extension.compatibility$apicurio_registry_gradle_plugin.actionList$apicurio_registry_gradle_plugin.get()
+        def artifactCommandList = extension.compatibility$plugin.actionList$plugin.get()
         artifactCommandList != null
         artifactCommandList.size() == 1
         artifactCommandList.every {

@@ -1,7 +1,4 @@
 rootProject.name = "apicurio-registry-gradle-plugin"
 
-dependencyResolutionManagement {
-    repositories {
-        mavenCentral()
-    }
-}
+include("example")
+includeBuild("plugin")
