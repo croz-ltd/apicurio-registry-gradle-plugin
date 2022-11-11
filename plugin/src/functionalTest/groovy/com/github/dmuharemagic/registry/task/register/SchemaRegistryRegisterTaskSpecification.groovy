@@ -24,7 +24,12 @@ class SchemaRegistryRegisterTaskSpecification extends AbstractFunctionalSpecific
                     url("$schemaRegistryUrl")
                 }
                 register {
-                    artifact(artifactId = "$metadata.artifactId", name = "$metadata.name", type = "$artifactTypeName", path = "$metadata.outputPath")
+                    artifact {
+                        id = "$metadata.artifactId"
+                        name = "$metadata.name"
+                        type = "$artifactTypeName"
+                        path = "$metadata.outputPath"
+                    }
                 }
             }
         """
@@ -47,7 +52,12 @@ class SchemaRegistryRegisterTaskSpecification extends AbstractFunctionalSpecific
                     url("$schemaRegistryUrl")
                 }
                 register {
-                    artifact(artifactId = "$metadata.artifactId", name = "$metadata.name", type = "$artifactTypeName", path = "$metadata.outputPath")
+                    artifact {
+                        id = "$metadata.artifactId"
+                        name = "$metadata.name"
+                        type = "$artifactTypeName"
+                        path = "$metadata.outputPath"
+                    }
                 }
             }
         """
@@ -70,7 +80,12 @@ class SchemaRegistryRegisterTaskSpecification extends AbstractFunctionalSpecific
                     url("$schemaRegistryUrl")
                 }
                 register {
-                    artifact(artifactId = "$metadata.artifactId", name = "$metadata.name", type = "$artifactTypeName", path = "${artifactFile.toAbsolutePath().toString()}")
+                    artifact {
+                        id = "$metadata.artifactId"
+                        name = "$metadata.name"
+                        type = "$artifactTypeName"
+                        path = "${artifactFile.toAbsolutePath().toString()}"
+                    }
                 }
             }
         """
@@ -98,7 +113,14 @@ class SchemaRegistryRegisterTaskSpecification extends AbstractFunctionalSpecific
                     url("$schemaRegistryUrl")
                 }
                 register {
-                    artifact(groupId = "$metadata.groupId", artifactId = "$metadata.artifactId", name = "$metadata.name", type = "$artifactTypeName", path = "${artifactFile.toAbsolutePath().toString()}")
+                    artifact {
+                        groupId = "$metadata.groupId"
+                        id = "$metadata.artifactId"
+                        name = "$metadata.name"
+                        type = "$artifactTypeName"
+                        path = "${artifactFile.toAbsolutePath().toString()}"
+                        conflictHandleType = "$conflictHandleTypeName"
+                    }
                 }
             }
         """
@@ -111,7 +133,7 @@ class SchemaRegistryRegisterTaskSpecification extends AbstractFunctionalSpecific
         assertArtifactRegisteredProperly metadata.groupId, metadata.artifactId, clientArtifactType
 
         where:
-        inputFileName   | artifactTypeName || clientArtifactType
-        "TestAvro.avsc" | "AVRO"           || ClientArtifactType.AVRO
+        inputFileName   | artifactTypeName | conflictHandleTypeName || clientArtifactType
+        "TestAvro.avsc" | "AVRO"           | "RETURN_OR_UPDATE"     || ClientArtifactType.AVRO
     }
 }
