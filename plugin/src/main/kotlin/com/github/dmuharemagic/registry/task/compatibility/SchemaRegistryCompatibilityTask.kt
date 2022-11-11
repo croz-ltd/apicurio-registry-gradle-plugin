@@ -1,7 +1,7 @@
 package com.github.dmuharemagic.registry.task.compatibility
 
+import com.github.dmuharemagic.registry.model.CompatibilityArtifact
 import com.github.dmuharemagic.registry.extension.CompatibilityHandler
-import com.github.dmuharemagic.registry.model.Action
 import com.github.dmuharemagic.registry.task.SCHEMA_REGISTRY_TASK_GROUP
 import com.github.dmuharemagic.registry.task.SchemaRegistryTask
 import org.gradle.api.GradleScriptException
@@ -27,7 +27,7 @@ internal abstract class SchemaRegistryCompatibilityTask @Inject constructor(fact
                 TASK_NAME,
                 SchemaRegistryCompatibilityTask::class.java
             ).configure {
-                it.actionList.set(handler.actionList)
+                it.artifacts.set(handler.artifacts)
             }
     }
 
@@ -38,15 +38,15 @@ internal abstract class SchemaRegistryCompatibilityTask @Inject constructor(fact
     }
 
     @get:Input
-    val actionList: ListProperty<Action.Compatibility> =
-        factory.listProperty(Action.Compatibility::class.java)
+    val artifacts: ListProperty<CompatibilityArtifact> =
+        factory.listProperty(CompatibilityArtifact::class.java)
 
     @TaskAction
     fun compatibility() {
         val errorCount = SchemaRegistryCompatibilityTaskAction(
             schemaRegistryClientService.get().client,
             project.projectDir.toPath(),
-            actionList.getOrElse(listOf())
+            artifacts.getOrElse(listOf())
         ).run()
 
         if (errorCount > 0) {

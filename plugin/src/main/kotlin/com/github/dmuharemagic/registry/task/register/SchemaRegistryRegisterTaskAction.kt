@@ -1,7 +1,8 @@
 package com.github.dmuharemagic.registry.task.register
 
-import com.github.dmuharemagic.registry.model.Action
+import com.github.dmuharemagic.registry.model.RegisterArtifact
 import com.github.dmuharemagic.registry.service.client.SchemaRegistryClient
+import com.github.dmuharemagic.registry.service.client.model.ClientCommand
 import com.github.dmuharemagic.registry.task.SchemaRegistryTaskAction
 import io.apicurio.registry.rest.client.exception.RestClientException
 import org.gradle.api.logging.Logging
@@ -17,18 +18,18 @@ import kotlin.io.path.inputStream
 internal class SchemaRegistryRegisterTaskAction(
     private val client: SchemaRegistryClient,
     private val rootDir: Path,
-    private val actionList: List<Action.Register>
+    private val artifacts: List<RegisterArtifact>
 ) : SchemaRegistryTaskAction {
     private val logger = Logging.getLogger(SchemaRegistryRegisterTaskAction::class.java)
 
     override fun run(): Int {
         var errorCount = 0
 
-        actionList.forEach {
+        artifacts.forEach {
             try {
                 registerArtifact(it)
             } catch (e: RestClientException) {
-                logger.error("Could not register the artifact: '${it.artifact.fullName}'", e)
+                logger.error("Could not register artifact '${it.fullName}'", e)
                 errorCount++
             }
         }
@@ -36,10 +37,10 @@ internal class SchemaRegistryRegisterTaskAction(
         return errorCount
     }
 
-    private fun registerArtifact(command: Action.Register) {
-        val artifactPath = rootDir.resolve(command.path)
+    private fun registerArtifact(artifact: RegisterArtifact) {
+        val artifactPath = rootDir.resolve(artifact.path)
 
-        val artifact = command.toCommand(artifactPath.inputStream())
-        client.register(artifact)
+        val command = ClientCommand.Register(artifact, artifactPath.inputStream())
+        client.register(command)
     }
 }

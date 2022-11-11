@@ -1,14 +1,14 @@
 package com.github.dmuharemagic.registry.task.register
 
+import com.github.dmuharemagic.registry.model.RegisterArtifact
 import com.github.dmuharemagic.registry.extension.RegisterHandler
-import com.github.dmuharemagic.registry.model.Action
 import com.github.dmuharemagic.registry.task.SCHEMA_REGISTRY_TASK_GROUP
 import com.github.dmuharemagic.registry.task.SchemaRegistryTask
 import org.gradle.api.GradleScriptException
 import org.gradle.api.Project
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.ListProperty
-import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.Nested
 import org.gradle.api.tasks.TaskAction
 import javax.inject.Inject
 
@@ -23,7 +23,7 @@ internal abstract class SchemaRegistryRegisterTask @Inject constructor(factory: 
 
         internal fun register(project: Project, handler: RegisterHandler) =
             project.tasks.register(TASK_NAME, SchemaRegistryRegisterTask::class.java).configure {
-                it.actionList.set(handler.actionList)
+                it.artifacts.set(handler.artifacts)
             }
     }
 
@@ -32,16 +32,16 @@ internal abstract class SchemaRegistryRegisterTask @Inject constructor(factory: 
         description = "Registers artifacts on the Apicurio schema registry"
     }
 
-    @get:Input
-    val actionList: ListProperty<Action.Register> =
-        factory.listProperty(Action.Register::class.java)
+    @get:Nested
+    internal val artifacts: ListProperty<RegisterArtifact> =
+        factory.listProperty(RegisterArtifact::class.java)
 
     @TaskAction
     fun register() {
         val errorCount = SchemaRegistryRegisterTaskAction(
             schemaRegistryClientService.get().client,
             project.projectDir.toPath(),
-            actionList.getOrElse(listOf())
+            artifacts.getOrElse(listOf())
         ).run()
 
         if (errorCount > 0) {

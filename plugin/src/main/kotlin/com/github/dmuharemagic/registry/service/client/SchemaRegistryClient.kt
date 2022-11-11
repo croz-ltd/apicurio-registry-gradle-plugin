@@ -1,16 +1,16 @@
 package com.github.dmuharemagic.registry.service.client
 
+import com.github.dmuharemagic.registry.model.*
+import com.github.dmuharemagic.registry.model.ArtifactType
 import com.github.dmuharemagic.registry.model.Authentication
-import com.github.dmuharemagic.registry.model.toArtifactType
+import com.github.dmuharemagic.registry.model.ConflictHandleType
 import com.github.dmuharemagic.registry.model.toClientArtifactType
-import com.github.dmuharemagic.registry.model.toClientConflictHandleType
 import com.github.dmuharemagic.registry.service.SchemaRegistryClientService
 import com.github.dmuharemagic.registry.service.client.model.ClientCommand
 import com.github.dmuharemagic.registry.service.client.model.ClientMetadata
 import io.apicurio.registry.rest.client.RegistryClient
 import io.apicurio.registry.rest.client.RegistryClientFactory
 import io.apicurio.registry.rest.v2.beans.IfExists
-import io.apicurio.registry.types.ArtifactType
 import io.apicurio.rest.client.auth.BasicAuth
 import io.apicurio.rest.client.auth.OidcAuth
 import io.apicurio.rest.client.auth.exception.AuthErrorHandler
@@ -18,7 +18,7 @@ import io.apicurio.rest.client.spi.ApicurioHttpClient
 import io.apicurio.rest.client.spi.ApicurioHttpClientFactory
 import java.io.InputStream
 
-internal typealias ClientArtifactType = ArtifactType;
+internal typealias ClientArtifactType = io.apicurio.registry.types.ArtifactType;
 internal typealias ClientConflictHandleType = IfExists;
 
 /**
@@ -161,12 +161,19 @@ internal interface SchemaRegistryClient {
         override fun register(command: ClientCommand.Register): ClientMetadata {
             val artifact = command.artifact
 
+            val artifactType = ArtifactType.fromName(artifact.type)
+            val conflictHandleTypeValue = artifact.conflictHandleType
+            val conflictHandleType = if (conflictHandleTypeValue != null) {
+                ConflictHandleType.fromName(conflictHandleTypeValue)
+            } else {
+                ConflictHandleType.FAIL
+            }
             val createArtifactMetadata = client.createArtifact(
                 artifact.groupId,
                 artifact.id,
                 artifact.version,
-                artifact.artifactType.toClientArtifactType(),
-                artifact.conflictHandleType.toClientConflictHandleType(),
+                artifactType.toClientArtifactType(),
+                conflictHandleType.toClientConflictHandleType(),
                 artifact.canonicalize,
                 artifact.name,
                 artifact.description,
