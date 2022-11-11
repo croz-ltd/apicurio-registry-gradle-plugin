@@ -1,13 +1,14 @@
 [versions]
 apicurioRegistryClient = "2.3.1.Final"
-kotlin = "1.7.20"
+dokka = "1.7.20"
+kotlin = "1.7.21"
 kotlinxBinaryCompatibilityValidator = "0.12.1"
 kover = "0.6.1"
 spock = "2.3-groovy-3.0"
 spockTestContainers = "1.17.5"
 
 [plugins]
-dokka = { id = "org.jetbrains.dokka", version.ref = "kotlin" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlinx-binaryCompatibilityValidator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "kotlinxBinaryCompatibilityValidator" }
 kotlinx-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
