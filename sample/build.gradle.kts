@@ -7,12 +7,12 @@ schemaRegistry {
         url("http://localhost:8080")
     }
     register {
-        artifact(
-            groupId = "test",
-            artifactId = "person",
-            name = "Person",
-            type = "AVRO",
+        artifact {
+            groupId = "test"
+            id = "person"
+            name = "Person"
+            type = "AVRO"
             path = "support/schema/Person.avsc"
-        )
+        }
     }
 }

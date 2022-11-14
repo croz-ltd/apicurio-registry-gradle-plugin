@@ -4,8 +4,7 @@ import com.github.dmuharemagic.registry.extension.CompatibilityHandler
 import com.github.dmuharemagic.registry.extension.ConfigurationHandler
 import com.github.dmuharemagic.registry.extension.DownloadHandler
 import com.github.dmuharemagic.registry.extension.RegisterHandler
-import com.github.dmuharemagic.registry.model.Authentication
-import com.github.dmuharemagic.registry.model.ConflictHandleType
+import com.github.dmuharemagic.registry.model.*
 import com.github.dmuharemagic.registry.util.ArtifactMetadataGeneratingUtil
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -93,24 +92,32 @@ class SchemaRegistryExtensionSpecification extends Specification {
         extension.download(new Action<DownloadHandler>() {
             @Override
             void execute(DownloadHandler handler) {
-                handler.artifact(metadata.groupId, metadata.artifactId, metadata.version, metadata.outputPath, null)
+                handler.artifact(new Action<DownloadArtifact>() {
+                    @Override
+                    void execute(DownloadArtifact artifact) {
+                        artifact.groupId = metadata.groupId
+                        artifact.id = metadata.artifactId
+                        artifact.version = metadata.version
+                        artifact.outputPath = metadata.outputPath
+                    }
+                })
             }
         })
 
         then:
-        def artifactCommandList = extension.download$plugin.actionList$plugin.get()
+        def artifactCommandList = extension.download$plugin.artifacts$plugin.get()
         artifactCommandList != null
         artifactCommandList.size() == 1
         artifactCommandList.every {
-            it.artifact.id == metadata.artifactId
-            it.artifact.groupId === metadata.groupId
-            it.artifact.version == metadata.version
+            it.id == metadata.artifactId
+            it.groupId == metadata.groupId
+            it.version == metadata.version
             it.outputPath == metadata.outputPath
             !it.outputFileName
         }
     }
 
-    def "should set artifacts details for specific group to be registered through register handler"(String conflictHandlerType) {
+    def "should set artifacts details for specific group to be registered through register handler"(String conflictHandleType) {
         given:
         def metadata = ArtifactMetadataGeneratingUtil.generate()
         def description = "description"
@@ -121,33 +128,46 @@ class SchemaRegistryExtensionSpecification extends Specification {
         extension.register(new Action<RegisterHandler>() {
             @Override
             void execute(RegisterHandler handler) {
-                handler.artifact(metadata.groupId, metadata.artifactId, metadata.name, artifactTypeName, metadata.outputPath, description, metadata.version, canonicalize, conflictHandlerType)
+                handler.artifact(new Action<RegisterArtifact>() {
+                    @Override
+                    void execute(RegisterArtifact artifact) {
+                        artifact.groupId = metadata.groupId
+                        artifact.id = metadata.artifactId
+                        artifact.name = metadata.name
+                        artifact.type = artifactTypeName
+                        artifact.path = metadata.outputPath
+                        artifact.description = description
+                        artifact.version = metadata.version
+                        artifact.canonicalize = canonicalize
+                        artifact.conflictHandleType = conflictHandleType
+                    }
+                })
             }
         })
 
         then:
-        def artifactCommandList = extension.register$plugin.actionList$plugin.get()
+        def artifactCommandList = extension.register$plugin.artifacts$plugin.get()
         artifactCommandList != null
         artifactCommandList.size() == 1
         artifactCommandList.every {
-            it.artifact.id == metadata.artifactId
-            it.artifact.groupId === metadata.groupId
-            it.artifact.name == metadata.name
-            it.artifact.artifactType.name() == artifactTypeName
+            it.id == metadata.artifactId
+            it.groupId === metadata.groupId
+            it.name == metadata.name
+            it.type == artifactTypeName
             it.path == metadata.outputPath
-            it.artifact.description == description
-            it.artifact.version == metadata.version
-            it.artifact.canonicalize == canonicalize
-            it.artifact.conflictHandleType.name() == conflictHandlerType ?: ConflictHandleType.FAIL
+            it.description == description
+            it.version == metadata.version
+            it.canonicalize == canonicalize
+            it.conflictHandleType == conflictHandleType ?: ConflictHandleType.FAIL
         }
 
         where:
-        conflictHandlerType                        | _
+        conflictHandleType                         | _
         ConflictHandleType.RETURN_OR_UPDATE.name() | _
         null                                       | _
     }
 
-    def "should set artifacts details for default group to be registered through register handler"(String conflictHandlerType) {
+    def "should set artifacts details for default group to be registered through register handler"(String conflictHandleType) {
         given:
         def metadata = ArtifactMetadataGeneratingUtil.generate()
         def description = "description"
@@ -158,28 +178,40 @@ class SchemaRegistryExtensionSpecification extends Specification {
         extension.register(new Action<RegisterHandler>() {
             @Override
             void execute(RegisterHandler handler) {
-                handler.artifact(metadata.artifactId, metadata.name, artifactTypeName, metadata.outputPath, description, metadata.version, canonicalize, conflictHandlerType)
+                handler.artifact(new Action<RegisterArtifact>() {
+                    @Override
+                    void execute(RegisterArtifact artifact) {
+                        artifact.id = metadata.artifactId
+                        artifact.name = metadata.name
+                        artifact.type = artifactTypeName
+                        artifact.path = metadata.outputPath
+                        artifact.description = description
+                        artifact.version = metadata.version
+                        artifact.canonicalize = canonicalize
+                        artifact.conflictHandleType = conflictHandleType
+                    }
+                })
             }
         })
 
         then:
-        def artifactCommandList = extension.register$plugin.actionList$plugin.get()
+        def artifactCommandList = extension.register$plugin.artifacts$plugin.get()
         artifactCommandList != null
         artifactCommandList.size() == 1
         artifactCommandList.every {
-            it.artifact.id == metadata.artifactId
-            !it.artifact.groupId
-            it.artifact.name == metadata.name
-            it.artifact.artifactType.name() == artifactTypeName
-            it.artifact.description == description
-            it.artifact.version == metadata.version
-            it.artifact.canonicalize == canonicalize
-            it.artifact.conflictHandleType.name() == conflictHandlerType ?: ConflictHandleType.FAIL
+            !it.groupId
+            it.id == metadata.artifactId
+            it.name == metadata.name
+            it.type == artifactTypeName
+            it.description == description
+            it.version == metadata.version
+            it.canonicalize == canonicalize
+            it.conflictHandleType == conflictHandleType ?: ConflictHandleType.FAIL
             it.path == metadata.outputPath
         }
 
         where:
-        conflictHandlerType                        | _
+        conflictHandleType                         | _
         ConflictHandleType.RETURN_OR_UPDATE.name() | _
         null                                       | _
     }
@@ -192,17 +224,24 @@ class SchemaRegistryExtensionSpecification extends Specification {
         extension.compatibility(new Action<CompatibilityHandler>() {
             @Override
             void execute(CompatibilityHandler handler) {
-                handler.artifact(metadata.groupId, metadata.artifactId, metadata.outputPath)
+                handler.artifact(new Action<CompatibilityArtifact>() {
+                    @Override
+                    void execute(CompatibilityArtifact artifact) {
+                        artifact.groupId = metadata.groupId
+                        artifact.id = metadata.artifactId
+                        artifact.path = metadata.outputPath
+                    }
+                })
             }
         })
 
         then:
-        def artifactCommandList = extension.compatibility$plugin.actionList$plugin.get()
+        def artifactCommandList = extension.compatibility$plugin.artifacts$plugin.get()
         artifactCommandList != null
         artifactCommandList.size() == 1
         artifactCommandList.every {
-            it.artifact.id == metadata.artifactId
-            it.artifact.groupId == metadata.groupId
+            it.id == metadata.artifactId
+            it.groupId == metadata.groupId
             it.path == metadata.outputPath
         }
     }
@@ -215,17 +254,23 @@ class SchemaRegistryExtensionSpecification extends Specification {
         extension.compatibility(new Action<CompatibilityHandler>() {
             @Override
             void execute(CompatibilityHandler handler) {
-                handler.artifact(metadata.artifactId, metadata.outputPath)
+                handler.artifact(new Action<CompatibilityArtifact>() {
+                    @Override
+                    void execute(CompatibilityArtifact artifact) {
+                        artifact.id = metadata.artifactId
+                        artifact.path = metadata.outputPath
+                    }
+                })
             }
         })
 
         then:
-        def artifactCommandList = extension.compatibility$plugin.actionList$plugin.get()
+        def artifactCommandList = extension.compatibility$plugin.artifacts$plugin.get()
         artifactCommandList != null
         artifactCommandList.size() == 1
         artifactCommandList.every {
-            it.artifact.id == metadata.artifactId
-            !it.artifact.groupId
+            !it.groupId
+            it.id == metadata.artifactId
             it.path == metadata.outputPath
         }
     }

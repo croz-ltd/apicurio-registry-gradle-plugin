@@ -22,7 +22,10 @@ class SchemaRegistryDownloadTaskSpecification extends AbstractFunctionalSpecific
                     url("$schemaRegistryUrl")
                 }
                 download {
-                    artifact(artifactId = "$metadata.artifactId", outputPath = "$metadata.outputPath")
+                    artifact {
+                        id = "$metadata.artifactId"
+                        outputPath = "$metadata.outputPath"
+                    }
                 }
             }
         """
@@ -44,7 +47,11 @@ class SchemaRegistryDownloadTaskSpecification extends AbstractFunctionalSpecific
                     url("$schemaRegistryUrl")
                 }
                 download {
-                    artifact(artifactId = "$metadata.artifactId", outputPath = "$metadata.outputPath", version = "$metadata.version")
+                    artifact {
+                        id = "$metadata.artifactId"
+                        outputPath = "$metadata.outputPath"
+                        version = "$metadata.version"
+                    }
                 }
             }
         """
@@ -67,7 +74,10 @@ class SchemaRegistryDownloadTaskSpecification extends AbstractFunctionalSpecific
                     url("$schemaRegistryUrl")
                 }
                 download {
-                    artifact(artifactId = "$metadata.artifactId", outputPath = "$metadata.outputPath")
+                    artifact {
+                        id = "$metadata.artifactId"
+                        outputPath = "$metadata.outputPath"
+                    }
                 }
             }
         """
@@ -94,7 +104,11 @@ class SchemaRegistryDownloadTaskSpecification extends AbstractFunctionalSpecific
                     url("$schemaRegistryUrl")
                 }
                 download {
-                    artifact(artifactId = "$metadata.artifactId", version = "$metadata.version", outputPath = "$metadata.outputPath")
+                    artifact {
+                        id = "$metadata.artifactId"
+                        version = "$metadata.version"
+                        outputPath = "$metadata.outputPath"
+                    }
                 }
             }
         """
@@ -121,7 +135,11 @@ class SchemaRegistryDownloadTaskSpecification extends AbstractFunctionalSpecific
                     url("$schemaRegistryUrl")
                 }
                 download {
-                    artifact(artifactId = "$metadata.artifactId", outputPath = "$metadata.outputPath", outputFileName = "$outputFileName")
+                    artifact {
+                        id = "$metadata.artifactId"
+                        outputPath = "$metadata.outputPath"
+                        outputFileName = "$outputFileName"
+                    }
                 }
             }
         """

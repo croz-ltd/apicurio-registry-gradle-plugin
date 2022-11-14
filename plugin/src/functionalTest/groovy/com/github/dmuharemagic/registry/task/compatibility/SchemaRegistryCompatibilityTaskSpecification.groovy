@@ -27,7 +27,10 @@ class SchemaRegistryCompatibilityTaskSpecification extends AbstractFunctionalSpe
                     url("$schemaRegistryUrl")
                 }
                 compatibility {
-                    artifact(artifactId = "$metadata.artifactId", path = "${artifactFile.toAbsolutePath().toString()}")
+                    artifact { 
+                        id = "$metadata.artifactId"
+                        path = "${artifactFile.toAbsolutePath().toString()}"
+                    }
                 }
             }
         """
@@ -56,7 +59,10 @@ class SchemaRegistryCompatibilityTaskSpecification extends AbstractFunctionalSpe
                     url("$schemaRegistryUrl")
                 }
                 compatibility {
-                    artifact(artifactId = "$metadata.artifactId", path = "${artifactFile.toAbsolutePath().toString()}")
+                    artifact {
+                        id = "$metadata.artifactId"
+                        path = "${artifactFile.toAbsolutePath().toString()}"
+                    }
                 }
             }
         """

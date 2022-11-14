@@ -36,7 +36,6 @@ class SchemaRegistryPluginSpecification extends Specification {
         SchemaRegistryDownloadTask task = project.tasks.getByName(SchemaRegistryDownloadTask.TASK_NAME)
         task instanceof SchemaRegistryDownloadTask
         task.description == "Downloads artifacts from the Apicurio schema registry"
-//        task.artifactCommandList = extension.download$apicurio_registry_gradle_plugin.artifactCommandList$apicurio_registry_gradle_plugin
     }
 
     def "creates and configures register task"() {

@@ -55,10 +55,6 @@ testing {
                 all {
                     testTask.configure {
                         shouldRunAfter(test)
-
-                        beforeTest(closureOf<TestDescriptor> {
-                            logger.lifecycle("Running test: $this")
-                        })
                     }
                 }
             }

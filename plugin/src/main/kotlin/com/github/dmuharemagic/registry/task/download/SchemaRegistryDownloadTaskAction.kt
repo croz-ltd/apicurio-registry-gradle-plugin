@@ -1,7 +1,8 @@
 package com.github.dmuharemagic.registry.task.download
 
-import com.github.dmuharemagic.registry.model.Action
+import com.github.dmuharemagic.registry.model.DownloadArtifact
 import com.github.dmuharemagic.registry.service.client.SchemaRegistryClient
+import com.github.dmuharemagic.registry.service.client.model.ClientCommand
 import com.github.dmuharemagic.registry.task.SchemaRegistryTaskAction
 import io.apicurio.registry.rest.client.exception.RestClientException
 import org.gradle.api.logging.Logging
@@ -18,18 +19,18 @@ import kotlin.io.path.createDirectories
 internal class SchemaRegistryDownloadTaskAction(
     private val client: SchemaRegistryClient,
     private val rootDir: Path,
-    private val actionList: List<Action.Download>
+    private val artifacts: List<DownloadArtifact>
 ) : SchemaRegistryTaskAction {
     private val logger = Logging.getLogger(SchemaRegistryDownloadTaskAction::class.java)
 
     override fun run(): Int {
         var errorCount = 0
 
-        actionList.forEach {
+        artifacts.forEach {
             try {
                 writeArtifactToFile(it)
             } catch (e: RestClientException) {
-                logger.error("Could not retrieve artifact: '${it.artifact.fullName}'", e)
+                logger.error("Could not retrieve artifact '${it.fullName}'", e)
                 errorCount++
             }
         }
@@ -37,29 +38,29 @@ internal class SchemaRegistryDownloadTaskAction(
         return errorCount
     }
 
-    private fun writeArtifactToFile(command: Action.Download) {
-        val outputDir = createParentDirectory(command)
-        createAndWriteToFile(command, outputDir)
+    private fun writeArtifactToFile(artifact: DownloadArtifact) {
+        val outputDir = createParentDirectory(artifact)
+        createAndWriteToFile(artifact, outputDir)
     }
 
-    private fun createParentDirectory(command: Action.Download): Path {
-        val outputDir = rootDir.resolve(command.outputPath)
+    private fun createParentDirectory(artifact: DownloadArtifact): Path {
+        val outputDir = rootDir.resolve(artifact.outputPath)
         outputDir.createDirectories()
 
         return outputDir
     }
 
     private fun createAndWriteToFile(
-        command: Action.Download,
+        artifact: DownloadArtifact,
         outputDir: Path
     ) {
-        val artifact = command.toCommand()
+        val command = ClientCommand.Download(artifact)
 
-        val metadata = client.fetchMetadata(artifact)
-        val fileName = command.outputFileName ?: metadata.name
+        val metadata = client.fetchMetadata(command)
+        val fileName = artifact.outputFileName ?: metadata.name
 
         val outputFile = outputDir.resolve("${fileName}.${metadata.artifactType.extension}")
-        client.fetchContent(artifact).use {
+        client.fetchContent(command).use {
             Files.write(outputFile, it.readAllBytes())
         }
     }

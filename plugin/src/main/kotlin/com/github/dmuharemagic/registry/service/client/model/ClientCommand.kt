@@ -1,6 +1,9 @@
 package com.github.dmuharemagic.registry.service.client.model
 
 import com.github.dmuharemagic.registry.model.Artifact
+import com.github.dmuharemagic.registry.model.CompatibilityArtifact
+import com.github.dmuharemagic.registry.model.DownloadArtifact
+import com.github.dmuharemagic.registry.model.RegisterArtifact
 import com.github.dmuharemagic.registry.service.SchemaRegistryClientService
 import com.github.dmuharemagic.registry.service.client.SchemaRegistryClient
 import java.io.InputStream
@@ -20,7 +23,7 @@ internal sealed class ClientCommand(open val artifact: Artifact) {
      * @property artifact The artifact information. See [Artifact] for more details.
      */
     data class Download(
-        override val artifact: Artifact.Basic,
+        override val artifact: DownloadArtifact,
     ) : ClientCommand(artifact)
 
     /**
@@ -30,7 +33,7 @@ internal sealed class ClientCommand(open val artifact: Artifact) {
      * @property data An input stream representing the local artifact content
      */
     data class Register(
-        override val artifact: Artifact.Full,
+        override val artifact: RegisterArtifact,
         val data: InputStream
     ) : ClientCommand(artifact)
 
@@ -41,7 +44,7 @@ internal sealed class ClientCommand(open val artifact: Artifact) {
      * @property data An input stream representing the local artifact content
      */
     data class Compatibility(
-        override val artifact: Artifact.Basic,
+        override val artifact: CompatibilityArtifact,
         val data: InputStream
     ) : ClientCommand(artifact)
 }
