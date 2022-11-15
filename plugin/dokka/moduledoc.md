@@ -8,4 +8,8 @@ The root package containing the plugin implementation.
 
 # Package com.github.dmuharemagic.registry.extension
 
-Contains a set of DSL structures used by the tasks defined by this plugin.
+Contains the extensions that consist of all the settings and properties for this plugin.
+
+# Package com.github.dmuharemagic.registry.model
+
+Contains a set of DSL structures related to artifacts used by the tasks defined by this plugin.
