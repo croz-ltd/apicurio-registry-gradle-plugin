@@ -58,7 +58,7 @@ abstract class AbstractFunctionalSpecification extends Specification {
     protected appendPluginDefinition() {
         buildFile << """
             plugins {
-                id("apicurio-registry-gradle-plugin")
+                id("net.croz.apicurio-registry-gradle-plugin")
             }
         """
     }
