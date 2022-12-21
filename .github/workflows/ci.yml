@@ -88,3 +88,9 @@ jobs:
           folder: plugin/build/dokka/html
           clean: true
           single-commit: true
+
+      - name: Publish plugin to Gradle Plugin Portal
+        if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: :plugin:publishPlugins
