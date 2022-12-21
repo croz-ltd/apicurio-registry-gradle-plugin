@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val VERSION: String by project
 version = VERSION
-group = "com.github.dmuharemagic"
+group = "net.croz.apicurio"
 
 plugins {
     id("groovy")
@@ -106,7 +106,7 @@ gradlePlugin {
     plugins {
         create("apicurio-registry-gradle-plugin") {
             id = "apicurio-registry-gradle-plugin"
-            implementationClass = "com.github.dmuharemagic.registry.SchemaRegistryPlugin"
+            implementationClass = "net.croz.apicurio.SchemaRegistryPlugin"
         }
     }
 
