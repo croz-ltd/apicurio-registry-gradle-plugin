@@ -139,8 +139,8 @@ val setupPublishPlugins = tasks.register("setupPublishPlugins") {
         throw RuntimeException("GRADLE_PUBLISH_KEY and/or GRADLE_PUBLISH_SECRET are not defined as environment variables")
     }
 
-    System.setProperty("gradle.publish.key", key)
-    System.setProperty("gradle.publish.secret", secret)
+    project.setProperty("gradle.publish.key", key)
+    project.setProperty("gradle.publish.secret", secret)
 }
 
 tasks.named("publishPlugins") {
