@@ -131,19 +131,10 @@ val isRelease = !isSnapshot
 val check = tasks.named("check")
 val functionalTest = tasks.named("functionalTest")
 
-val setupPublishPlugins = tasks.register("setupPublishPlugins") {
-    val key = System.getenv("GRADLE_PUBLISH_KEY")
-    val secret = System.getenv("GRADLE_PUBLISH_SECRET")
-
-    if (key.isNullOrEmpty() || secret.isNullOrEmpty()) {
-        throw RuntimeException("GRADLE_PUBLISH_KEY and/or GRADLE_PUBLISH_SECRET are not defined as environment variables")
-    }
-}
-
 tasks.named("publishPlugins") {
     onlyIf { isRelease }
 
     if (isRelease) {
-        dependsOn(check, setupPublishPlugins)
+        dependsOn(check)
     }
 }
