@@ -105,7 +105,7 @@ tasks.withType<DokkaTask>() {
 gradlePlugin {
     plugins {
         create("apicurio-registry-gradle-plugin") {
-            id = "apicurio-registry-gradle-plugin"
+            id = "net.croz.apicurio-registry-gradle-plugin"
             implementationClass = "net.croz.apicurio.SchemaRegistryPlugin"
         }
     }
