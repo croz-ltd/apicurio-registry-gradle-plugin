@@ -1,4 +1,4 @@
-public class com/github/dmuharemagic/registry/SchemaRegistryExtension {
+public class net/croz/apicurio/SchemaRegistryExtension {
 	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
 	public final fun compatibility (Lorg/gradle/api/Action;)V
 	public final fun config (Lorg/gradle/api/Action;)V
@@ -6,35 +6,35 @@ public class com/github/dmuharemagic/registry/SchemaRegistryExtension {
 	public final fun register (Lorg/gradle/api/Action;)V
 }
 
-public final class com/github/dmuharemagic/registry/SchemaRegistryPlugin : org/gradle/api/Plugin {
+public final class net/croz/apicurio/SchemaRegistryPlugin : org/gradle/api/Plugin {
 	public fun <init> ()V
 	public synthetic fun apply (Ljava/lang/Object;)V
 	public fun apply (Lorg/gradle/api/Project;)V
 }
 
-public class com/github/dmuharemagic/registry/extension/CompatibilityHandler {
+public class net/croz/apicurio/extension/CompatibilityHandler {
 	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
 	public final fun artifact (Lorg/gradle/api/Action;)V
 }
 
-public class com/github/dmuharemagic/registry/extension/ConfigurationHandler {
+public class net/croz/apicurio/extension/ConfigurationHandler {
 	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
 	public final fun auth (Ljava/lang/String;Ljava/lang/String;)V
 	public final fun auth (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public final fun url (Ljava/lang/String;)V
 }
 
-public class com/github/dmuharemagic/registry/extension/DownloadHandler {
+public class net/croz/apicurio/extension/DownloadHandler {
 	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
 	public final fun artifact (Lorg/gradle/api/Action;)V
 }
 
-public class com/github/dmuharemagic/registry/extension/RegisterHandler {
+public class net/croz/apicurio/extension/RegisterHandler {
 	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
 	public final fun artifact (Lorg/gradle/api/Action;)V
 }
 
-public class com/github/dmuharemagic/registry/model/Artifact {
+public class net/croz/apicurio/model/Artifact {
 	public field id Ljava/lang/String;
 	public fun <init> ()V
 	public final fun getGroupId ()Ljava/lang/String;
@@ -45,14 +45,14 @@ public class com/github/dmuharemagic/registry/model/Artifact {
 	public final fun setVersion (Ljava/lang/String;)V
 }
 
-public class com/github/dmuharemagic/registry/model/CompatibilityArtifact : com/github/dmuharemagic/registry/model/Artifact {
+public class net/croz/apicurio/model/CompatibilityArtifact : net/croz/apicurio/model/Artifact {
 	public field path Ljava/lang/String;
 	public fun <init> ()V
 	public final fun getPath ()Ljava/lang/String;
 	public final fun setPath (Ljava/lang/String;)V
 }
 
-public class com/github/dmuharemagic/registry/model/DownloadArtifact : com/github/dmuharemagic/registry/model/Artifact {
+public class net/croz/apicurio/model/DownloadArtifact : net/croz/apicurio/model/Artifact {
 	public field outputPath Ljava/lang/String;
 	public fun <init> ()V
 	public final fun getOutputFileName ()Ljava/lang/String;
@@ -61,7 +61,7 @@ public class com/github/dmuharemagic/registry/model/DownloadArtifact : com/githu
 	public final fun setOutputPath (Ljava/lang/String;)V
 }
 
-public class com/github/dmuharemagic/registry/model/RegisterArtifact : com/github/dmuharemagic/registry/model/Artifact {
+public class net/croz/apicurio/model/RegisterArtifact : net/croz/apicurio/model/Artifact {
 	public field name Ljava/lang/String;
 	public field path Ljava/lang/String;
 	public field type Ljava/lang/String;

@@ -1,6 +1,6 @@
 {
   "type": "record",
-  "namespace": "com.github.dmuharemagic",
+  "namespace": "net.croz",
   "name": "Person",
   "fields": [
     {
