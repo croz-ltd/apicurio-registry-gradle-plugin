@@ -1,16 +1,16 @@
 {
-  "type": "struct",
-  "fields": [
-    {
-      "type": "integer",
-      "optional": false,
-      "field": "id"
-    },
-    {
-      "type": "string",
-      "optional": false,
-      "field": "name"
-    }
-  ],
-  "optional": false
+    "type": "struct",
+    "fields": [
+        {
+            "type": "integer",
+            "optional": false,
+            "field": "id"
+        },
+        {
+            "type": "string",
+            "optional": false,
+            "field": "name"
+        }
+    ],
+    "optional": false
 }

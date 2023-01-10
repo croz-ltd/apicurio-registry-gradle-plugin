@@ -4,6 +4,6 @@ import groovy.transform.Immutable
 
 @Immutable
 class RetrieveArtifactMetadata {
-    String groupId = "default", artifactId
+  String groupId = "default", artifactId
 }
 
