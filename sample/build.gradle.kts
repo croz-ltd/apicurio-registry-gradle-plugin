@@ -1,5 +1,5 @@
 plugins {
-    id("net.croz.apicurio-registry-gradle-plugin") version "0.1-SNAPSHOT"
+    id("net.croz.apicurio-registry-gradle-plugin") version "1.1.0"
 }
 
 schemaRegistry {
