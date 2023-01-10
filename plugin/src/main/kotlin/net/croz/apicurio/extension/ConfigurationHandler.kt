@@ -5,7 +5,6 @@ import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.Property
 import javax.inject.Inject
 
-
 /**
  * A nested DSL structure which configures the connection information (URL, authentication) need to connect to the Apicurio Schema Registry.
  */

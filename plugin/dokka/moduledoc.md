@@ -6,6 +6,10 @@ This module shows the Apicurio Registry Gradle Plugin syntax usage.
 
 The root package containing the plugin implementation.
 
+# Package net.croz.apicurio.exception
+
+Contains the exceptions used by this plugin.
+
 # Package net.croz.apicurio.extension
 
 Contains the extensions that consist of all the settings and properties for this plugin.

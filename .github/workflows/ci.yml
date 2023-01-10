@@ -10,8 +10,8 @@ jobs:
   build-and-deploy-documentation:
     strategy:
       matrix:
-        java: [ "17" ]
-        os: [ ubuntu-latest ]
+        java: ["11"]
+        os: [ubuntu-latest]
 
     runs-on: ${{ matrix.os }}
     name: ${{ matrix.os }} - JDK ${{ matrix.java }}

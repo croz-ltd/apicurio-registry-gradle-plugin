@@ -1,6 +1,6 @@
 package net.croz.apicurio.model
 
-import net.croz.apicurio.core.UnknownArtifactTypeException
+import net.croz.apicurio.exception.UnknownArtifactTypeException
 import net.croz.apicurio.service.client.ClientArtifactType
 
 /**
@@ -29,7 +29,7 @@ internal enum class ArtifactType(val extension: String) {
          * @throws UnknownArtifactTypeException if the associated artifact type is not found
          */
         fun fromName(name: String) =
-            values().firstOrNull() { it.name == name } ?: throw UnknownArtifactTypeException(name)
+            values().firstOrNull { it.name == name } ?: throw UnknownArtifactTypeException(name)
     }
 }
 

@@ -33,10 +33,10 @@ internal abstract class SchemaRegistryClientService : BuildService<SchemaRegistr
         val url = parameters.url.get()
         val authenticationContext = parameters.authentication.get()
 
-        client = SchemaRegistryClient.getInstance(url, authenticationContext)
+        client = SchemaRegistryClient(url, authenticationContext)
     }
 
     override fun close() {
-        SchemaRegistryClient.close()
+        client.close()
     }
 }
