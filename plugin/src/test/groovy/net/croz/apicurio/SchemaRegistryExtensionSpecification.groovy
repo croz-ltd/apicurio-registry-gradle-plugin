@@ -1,13 +1,10 @@
 package net.croz.apicurio
 
-import net.croz.apicurio.core.model.RegisterArtifact
 import net.croz.apicurio.extension.CompatibilityHandler
 import net.croz.apicurio.extension.ConfigurationHandler
 import net.croz.apicurio.extension.DownloadHandler
 import net.croz.apicurio.extension.RegisterHandler
-import net.croz.apicurio.model.Authentication
-import net.croz.apicurio.model.CompatibilityArtifact
-import net.croz.apicurio.model.DownloadArtifact
+import net.croz.apicurio.model.*
 import net.croz.apicurio.util.ArtifactMetadataGeneratingUtil
 import org.gradle.api.Action
 import org.gradle.testfixtures.ProjectBuilder
