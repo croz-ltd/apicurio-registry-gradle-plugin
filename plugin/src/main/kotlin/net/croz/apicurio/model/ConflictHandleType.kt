@@ -1,13 +1,13 @@
 package net.croz.apicurio.model
 
-import net.croz.apicurio.core.UnknownConflictHandleTypeException
+import net.croz.apicurio.exception.UnknownConflictHandleTypeException
 import net.croz.apicurio.service.client.ClientConflictHandleType
 
 /**
  * Contains the conflict handle types available for usage with this plugin which determines the behavior
  * during registering a local artifact which is the identical to its remote counterpart.
  */
-internal enum class ConflictHandleType() {
+internal enum class ConflictHandleType {
     FAIL,
     UPDATE,
     RETURN,
@@ -21,7 +21,7 @@ internal enum class ConflictHandleType() {
          * @throws UnknownConflictHandleTypeException if the associated conflict handle type is not found
          */
         fun fromName(name: String) =
-            ConflictHandleType.values().firstOrNull() { it.name == name } ?: throw UnknownConflictHandleTypeException(
+            ConflictHandleType.values().firstOrNull { it.name == name } ?: throw UnknownConflictHandleTypeException(
                 name
             )
     }
