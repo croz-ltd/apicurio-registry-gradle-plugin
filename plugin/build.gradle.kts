@@ -16,7 +16,6 @@ plugins {
     alias(libs.plugins.kotlinx.binaryCompatibilityValidator)
 }
 
-// Dependencies
 dependencies {
     implementation(libs.apicurio.client)
 
@@ -24,17 +23,15 @@ dependencies {
     testFixturesImplementation(libs.spock.testContainers)
 }
 
-// Compile
 java {
-    sourceCompatibility = JavaVersion.VERSION_18
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_11.toString()
 }
 
-// Test
 testing {
     suites {
         val test by getting(JvmTestSuite::class) {
@@ -93,7 +90,6 @@ kover {
     }
 }
 
-// Documentation
 tasks.withType<DokkaTask>() {
     dokkaSourceSets {
         configureEach {
@@ -102,7 +98,6 @@ tasks.withType<DokkaTask>() {
     }
 }
 
-// Plugin
 gradlePlugin {
     plugins {
         create("apicurio-registry-gradle-plugin") {
@@ -116,8 +111,6 @@ gradlePlugin {
     testSourceSets(sourceSets.getByName("functionalTest"))
 }
 
-// For publishing to the Gradle Plugin Portal
-// https://plugins.gradle.org/docs/publish-plugin
 pluginBundle {
     website = "https://github.com/croz-ltd/apicurio-registry-gradle-plugin"
     vcsUrl = "https://github.com/croz-ltd/apicurio-registry-gradle-plugin.git"
@@ -129,7 +122,6 @@ val isSnapshot = project.version.toString().endsWith("SNAPSHOT")
 val isRelease = !isSnapshot
 
 val check = tasks.named("check")
-val functionalTest = tasks.named("functionalTest")
 
 tasks.named("publishPlugins") {
     onlyIf { isRelease }
