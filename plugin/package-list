@@ -1,0 +1,52 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:net.croz.apicurio.extension////PointingToDeclaration/plugin/net.croz.apicurio.extension/index.html
+$dokka.location:net.croz.apicurio.extension/CompatibilityHandler///PointingToDeclaration/plugin/net.croz.apicurio.extension/-compatibility-handler/index.html
+$dokka.location:net.croz.apicurio.extension/CompatibilityHandler/CompatibilityHandler/#org.gradle.api.model.ObjectFactory/PointingToDeclaration/plugin/net.croz.apicurio.extension/-compatibility-handler/-compatibility-handler.html
+$dokka.location:net.croz.apicurio.extension/CompatibilityHandler/artifact/#org.gradle.api.Action[net.croz.apicurio.model.CompatibilityArtifact]/PointingToDeclaration/plugin/net.croz.apicurio.extension/-compatibility-handler/artifact.html
+$dokka.location:net.croz.apicurio.extension/ConfigurationHandler///PointingToDeclaration/plugin/net.croz.apicurio.extension/-configuration-handler/index.html
+$dokka.location:net.croz.apicurio.extension/ConfigurationHandler/ConfigurationHandler/#org.gradle.api.model.ObjectFactory/PointingToDeclaration/plugin/net.croz.apicurio.extension/-configuration-handler/-configuration-handler.html
+$dokka.location:net.croz.apicurio.extension/ConfigurationHandler/auth/#kotlin.String#kotlin.String#kotlin.String/PointingToDeclaration/plugin/net.croz.apicurio.extension/-configuration-handler/auth.html
+$dokka.location:net.croz.apicurio.extension/ConfigurationHandler/auth/#kotlin.String#kotlin.String/PointingToDeclaration/plugin/net.croz.apicurio.extension/-configuration-handler/auth.html
+$dokka.location:net.croz.apicurio.extension/ConfigurationHandler/url/#kotlin.String/PointingToDeclaration/plugin/net.croz.apicurio.extension/-configuration-handler/url.html
+$dokka.location:net.croz.apicurio.extension/DownloadHandler///PointingToDeclaration/plugin/net.croz.apicurio.extension/-download-handler/index.html
+$dokka.location:net.croz.apicurio.extension/DownloadHandler/DownloadHandler/#org.gradle.api.model.ObjectFactory/PointingToDeclaration/plugin/net.croz.apicurio.extension/-download-handler/-download-handler.html
+$dokka.location:net.croz.apicurio.extension/DownloadHandler/artifact/#org.gradle.api.Action[net.croz.apicurio.model.DownloadArtifact]/PointingToDeclaration/plugin/net.croz.apicurio.extension/-download-handler/artifact.html
+$dokka.location:net.croz.apicurio.extension/RegisterHandler///PointingToDeclaration/plugin/net.croz.apicurio.extension/-register-handler/index.html
+$dokka.location:net.croz.apicurio.extension/RegisterHandler/RegisterHandler/#org.gradle.api.model.ObjectFactory/PointingToDeclaration/plugin/net.croz.apicurio.extension/-register-handler/-register-handler.html
+$dokka.location:net.croz.apicurio.extension/RegisterHandler/artifact/#org.gradle.api.Action[net.croz.apicurio.model.RegisterArtifact]/PointingToDeclaration/plugin/net.croz.apicurio.extension/-register-handler/artifact.html
+$dokka.location:net.croz.apicurio.model////PointingToDeclaration/plugin/net.croz.apicurio.model/index.html
+$dokka.location:net.croz.apicurio.model/Artifact///PointingToDeclaration/plugin/net.croz.apicurio.model/-artifact/index.html
+$dokka.location:net.croz.apicurio.model/Artifact/Artifact/#/PointingToDeclaration/plugin/net.croz.apicurio.model/-artifact/-artifact.html
+$dokka.location:net.croz.apicurio.model/Artifact/groupId/#/PointingToDeclaration/plugin/net.croz.apicurio.model/-artifact/group-id.html
+$dokka.location:net.croz.apicurio.model/Artifact/id/#/PointingToDeclaration/plugin/net.croz.apicurio.model/-artifact/id.html
+$dokka.location:net.croz.apicurio.model/Artifact/version/#/PointingToDeclaration/plugin/net.croz.apicurio.model/-artifact/version.html
+$dokka.location:net.croz.apicurio.model/CompatibilityArtifact///PointingToDeclaration/plugin/net.croz.apicurio.model/-compatibility-artifact/index.html
+$dokka.location:net.croz.apicurio.model/CompatibilityArtifact/CompatibilityArtifact/#/PointingToDeclaration/plugin/net.croz.apicurio.model/-compatibility-artifact/-compatibility-artifact.html
+$dokka.location:net.croz.apicurio.model/CompatibilityArtifact/path/#/PointingToDeclaration/plugin/net.croz.apicurio.model/-compatibility-artifact/path.html
+$dokka.location:net.croz.apicurio.model/DownloadArtifact///PointingToDeclaration/plugin/net.croz.apicurio.model/-download-artifact/index.html
+$dokka.location:net.croz.apicurio.model/DownloadArtifact/DownloadArtifact/#/PointingToDeclaration/plugin/net.croz.apicurio.model/-download-artifact/-download-artifact.html
+$dokka.location:net.croz.apicurio.model/DownloadArtifact/outputFileName/#/PointingToDeclaration/plugin/net.croz.apicurio.model/-download-artifact/output-file-name.html
+$dokka.location:net.croz.apicurio.model/DownloadArtifact/outputPath/#/PointingToDeclaration/plugin/net.croz.apicurio.model/-download-artifact/output-path.html
+$dokka.location:net.croz.apicurio.model/RegisterArtifact///PointingToDeclaration/plugin/net.croz.apicurio.model/-register-artifact/index.html
+$dokka.location:net.croz.apicurio.model/RegisterArtifact/RegisterArtifact/#/PointingToDeclaration/plugin/net.croz.apicurio.model/-register-artifact/-register-artifact.html
+$dokka.location:net.croz.apicurio.model/RegisterArtifact/canonicalize/#/PointingToDeclaration/plugin/net.croz.apicurio.model/-register-artifact/canonicalize.html
+$dokka.location:net.croz.apicurio.model/RegisterArtifact/conflictHandleType/#/PointingToDeclaration/plugin/net.croz.apicurio.model/-register-artifact/conflict-handle-type.html
+$dokka.location:net.croz.apicurio.model/RegisterArtifact/description/#/PointingToDeclaration/plugin/net.croz.apicurio.model/-register-artifact/description.html
+$dokka.location:net.croz.apicurio.model/RegisterArtifact/name/#/PointingToDeclaration/plugin/net.croz.apicurio.model/-register-artifact/name.html
+$dokka.location:net.croz.apicurio.model/RegisterArtifact/path/#/PointingToDeclaration/plugin/net.croz.apicurio.model/-register-artifact/path.html
+$dokka.location:net.croz.apicurio.model/RegisterArtifact/type/#/PointingToDeclaration/plugin/net.croz.apicurio.model/-register-artifact/type.html
+$dokka.location:net.croz.apicurio////PointingToDeclaration/plugin/net.croz.apicurio/index.html
+$dokka.location:net.croz.apicurio/SchemaRegistryExtension///PointingToDeclaration/plugin/net.croz.apicurio/-schema-registry-extension/index.html
+$dokka.location:net.croz.apicurio/SchemaRegistryExtension/SchemaRegistryExtension/#org.gradle.api.model.ObjectFactory/PointingToDeclaration/plugin/net.croz.apicurio/-schema-registry-extension/-schema-registry-extension.html
+$dokka.location:net.croz.apicurio/SchemaRegistryExtension/compatibility/#org.gradle.api.Action[net.croz.apicurio.extension.CompatibilityHandler]/PointingToDeclaration/plugin/net.croz.apicurio/-schema-registry-extension/compatibility.html
+$dokka.location:net.croz.apicurio/SchemaRegistryExtension/config/#org.gradle.api.Action[net.croz.apicurio.extension.ConfigurationHandler]/PointingToDeclaration/plugin/net.croz.apicurio/-schema-registry-extension/config.html
+$dokka.location:net.croz.apicurio/SchemaRegistryExtension/download/#org.gradle.api.Action[net.croz.apicurio.extension.DownloadHandler]/PointingToDeclaration/plugin/net.croz.apicurio/-schema-registry-extension/download.html
+$dokka.location:net.croz.apicurio/SchemaRegistryExtension/register/#org.gradle.api.Action[net.croz.apicurio.extension.RegisterHandler]/PointingToDeclaration/plugin/net.croz.apicurio/-schema-registry-extension/register.html
+$dokka.location:net.croz.apicurio/SchemaRegistryPlugin///PointingToDeclaration/plugin/net.croz.apicurio/-schema-registry-plugin/index.html
+$dokka.location:net.croz.apicurio/SchemaRegistryPlugin/SchemaRegistryPlugin/#/PointingToDeclaration/plugin/net.croz.apicurio/-schema-registry-plugin/-schema-registry-plugin.html
+$dokka.location:net.croz.apicurio/SchemaRegistryPlugin/apply/#org.gradle.api.Project/PointingToDeclaration/plugin/net.croz.apicurio/-schema-registry-plugin/apply.html
+net.croz.apicurio
+net.croz.apicurio.extension
+net.croz.apicurio.model
+
