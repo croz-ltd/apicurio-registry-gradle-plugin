@@ -59,7 +59,7 @@ internal class SchemaRegistryDownloadTaskAction(
         val metadata = client.fetchMetadata(command)
         val fileName = artifact.outputFileName ?: metadata.name
 
-        val outputFile = outputDir.resolve("${fileName}.${metadata.artifactType.extension}")
+        val outputFile = outputDir.resolve("${fileName}.${metadata.artifactType}")
         client.fetchContent(command).use {
             Files.write(outputFile, it.readAllBytes())
         }

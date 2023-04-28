@@ -2,8 +2,6 @@ package net.croz.apicurio.task.compatibility
 
 import net.croz.apicurio.core.model.RegisterArtifact
 import net.croz.apicurio.core.specification.AbstractFunctionalSpecification
-import net.croz.apicurio.model.ArtifactType
-import net.croz.apicurio.model.ArtifactTypeKt
 import net.croz.apicurio.util.ArtifactMetadataGeneratingUtil
 import net.croz.apicurio.util.IOUtil
 import net.croz.apicurio.util.SchemaRegistryUtil
@@ -50,8 +48,7 @@ class SchemaRegistryCompatibilityTaskSpecification extends AbstractFunctionalSpe
   def "should check artifact compatibility"() {
     setup:
         def metadata = ArtifactMetadataGeneratingUtil.generate()
-        SchemaRegistryUtil.registerArtifact(schemaRegistryUrl, new RegisterArtifact(path: inputFileName, artifactId: metadata.artifactId, name: metadata.name,
-                                                                                    type: ArtifactTypeKt.toClientArtifactType(ArtifactType.@Companion.fromName(artifactTypeName))))
+        SchemaRegistryUtil.registerArtifact(schemaRegistryUrl, new RegisterArtifact(path: inputFileName, artifactId: metadata.artifactId, name: metadata.name, type: artifactTypeName))
         def artifactFile = projectDir.resolve(inputFileName)
         Files.createFile(artifactFile) << IOUtil.getResource(inputFileName)
         buildFile << """

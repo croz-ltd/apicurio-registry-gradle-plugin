@@ -42,33 +42,6 @@ class SchemaRegistryRegisterTaskSpecification extends AbstractFunctionalSpecific
         result.output.contains("1 artifacts not registered, see logs for details")
   }
 
-  def "should fail registering an artifact with an unknown artifact type"() {
-    setup:
-        def metadata = ArtifactMetadataGeneratingUtil.generate()
-        def artifactTypeName = "TEST"
-        buildFile << """
-            schemaRegistry {
-                config {
-                    url("$schemaRegistryUrl")
-                }
-                register {
-                    artifact {
-                        id = "$metadata.artifactId"
-                        name = "$metadata.name"
-                        type = "$artifactTypeName"
-                        path = "$metadata.outputPath"
-                    }
-                }
-            }
-        """
-
-    when:
-        def result = buildAndFail(SchemaRegistryRegisterTask.TASK_NAME)
-
-    then:
-        result.output.contains("Cannot derive artifact type from name [$artifactTypeName]. Possible values include: [AVRO, PROTOBUF, JSON, OPENAPI, ASYNCAPI, GRAPHQL, KCONNECT, WSDL, XSD, XML].")
-  }
-
   def "should register local artifact in default group"() {
     setup:
         def metadata = ArtifactMetadataGeneratingUtil.generate()
@@ -95,11 +68,11 @@ class SchemaRegistryRegisterTaskSpecification extends AbstractFunctionalSpecific
 
     then:
         result.task(":$SchemaRegistryRegisterTask.TASK_NAME").outcome == TaskOutcome.SUCCESS
-        assertArtifactRegisteredProperly metadata.artifactId, clientArtifactType
+        assertArtifactRegisteredProperly metadata.artifactId, artifactTypeName
 
     where:
-        inputFileName   | artifactTypeName || clientArtifactType
-        "TestAvro.avsc" | "AVRO"           || ClientArtifactType.AVRO
+        inputFileName   | artifactTypeName
+        "TestAvro.avsc" | "AVRO"
   }
 
   def "should register local artifact in specific group"() {
@@ -130,10 +103,10 @@ class SchemaRegistryRegisterTaskSpecification extends AbstractFunctionalSpecific
 
     then:
         result.task(":$SchemaRegistryRegisterTask.TASK_NAME").outcome == TaskOutcome.SUCCESS
-        assertArtifactRegisteredProperly metadata.groupId, metadata.artifactId, clientArtifactType
+        assertArtifactRegisteredProperly metadata.groupId, metadata.artifactId, artifactTypeName
 
     where:
-        inputFileName   | artifactTypeName | conflictHandleTypeName || clientArtifactType
-        "TestAvro.avsc" | "AVRO"           | "RETURN_OR_UPDATE"     || ClientArtifactType.AVRO
+        inputFileName   | artifactTypeName | conflictHandleTypeName
+        "TestAvro.avsc" | "AVRO"           | "RETURN_OR_UPDATE"
   }
 }

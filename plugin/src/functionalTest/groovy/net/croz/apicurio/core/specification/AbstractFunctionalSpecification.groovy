@@ -1,6 +1,5 @@
 package net.croz.apicurio.core.specification
 
-import io.apicurio.registry.types.ArtifactType as ClientArtifactType
 import net.croz.apicurio.core.model.RetrieveArtifactMetadata
 import net.croz.apicurio.core.testcontainers.ApicurioSchemaRegistryContainerFactory
 import net.croz.apicurio.util.SchemaRegistryUtil
@@ -35,7 +34,7 @@ abstract class AbstractFunctionalSpecification extends Specification {
     assert Files.isReadable(outputPath): "output file must be readable"
   }
 
-  protected void assertArtifactRegisteredProperly(String groupId = null, String artifactId, ClientArtifactType clientArtifactType) {
+  protected void assertArtifactRegisteredProperly(String groupId = null, String artifactId, String clientArtifactType) {
     def metadata = SchemaRegistryUtil.retrieveArtifactMetadata(schemaRegistryUrl, new RetrieveArtifactMetadata(groupId, artifactId))
     assert metadata: "metadata must be present"
     if (!groupId) {

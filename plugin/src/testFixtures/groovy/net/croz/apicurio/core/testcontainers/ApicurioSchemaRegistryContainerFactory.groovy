@@ -7,7 +7,7 @@ import org.testcontainers.utility.DockerImageName
 class ApicurioSchemaRegistryContainerFactory {
   static GenericContainer makeAndStartContainer(String containerName = "apicurio-schema-registry", Integer httpPort = 8080) {
     def containerNameSuffix = UUID.randomUUID()
-    GenericContainer apicurioSchemaRegistry = new GenericContainer(DockerImageName.parse("apicurio/apicurio-registry-mem").withTag("2.3.1.Final"))
+    GenericContainer apicurioSchemaRegistry = new GenericContainer(DockerImageName.parse("apicurio/apicurio-registry-mem").withTag("2.4.2.Final"))
 
     apicurioSchemaRegistry.with {
       withExposedPorts(httpPort)

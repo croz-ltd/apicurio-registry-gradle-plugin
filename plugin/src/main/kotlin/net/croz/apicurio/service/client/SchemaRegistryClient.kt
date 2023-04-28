@@ -8,18 +8,14 @@ import io.apicurio.rest.client.auth.OidcAuth
 import io.apicurio.rest.client.auth.exception.AuthErrorHandler
 import io.apicurio.rest.client.spi.ApicurioHttpClient
 import io.apicurio.rest.client.spi.ApicurioHttpClientFactory
-import net.croz.apicurio.model.ArtifactType
 import net.croz.apicurio.model.Authentication
 import net.croz.apicurio.model.ConflictHandleType
-import net.croz.apicurio.model.toArtifactType
-import net.croz.apicurio.model.toClientArtifactType
 import net.croz.apicurio.model.toClientConflictHandleType
 import net.croz.apicurio.service.SchemaRegistryClientService
 import net.croz.apicurio.service.client.model.ClientCommand
 import net.croz.apicurio.service.client.model.ClientMetadata
 import java.io.InputStream
 
-internal typealias ClientArtifactType = io.apicurio.registry.types.ArtifactType
 internal typealias ClientConflictHandleType = IfExists
 
 /**
@@ -73,7 +69,7 @@ internal class SchemaRegistryClient(url: String, authentication: Authentication)
             val metadata =
                 client.getArtifactMetaData(artifact.groupId, artifact.id)
 
-            ClientMetadata(metadata.name, metadata.type.toArtifactType())
+            ClientMetadata(metadata.name, metadata.type)
         } else {
             val metadata =
                 client.getArtifactVersionMetaData(
@@ -82,7 +78,7 @@ internal class SchemaRegistryClient(url: String, authentication: Authentication)
                     artifact.version
                 )
 
-            ClientMetadata(metadata.name, metadata.type.toArtifactType())
+            ClientMetadata(metadata.name, metadata.type)
         }
     }
 
@@ -118,7 +114,7 @@ internal class SchemaRegistryClient(url: String, authentication: Authentication)
     fun register(command: ClientCommand.Register): ClientMetadata {
         val artifact = command.artifact
 
-        val artifactType = ArtifactType.fromName(artifact.type)
+        val artifactType = artifact.type
         val conflictHandleTypeValue = artifact.conflictHandleType
         val conflictHandleType = if (conflictHandleTypeValue != null) {
             ConflictHandleType.fromName(conflictHandleTypeValue)
@@ -129,7 +125,7 @@ internal class SchemaRegistryClient(url: String, authentication: Authentication)
             artifact.groupId,
             artifact.id,
             artifact.version,
-            artifactType.toClientArtifactType(),
+            artifactType,
             conflictHandleType.toClientConflictHandleType(),
             artifact.canonicalize,
             artifact.name,
@@ -137,7 +133,7 @@ internal class SchemaRegistryClient(url: String, authentication: Authentication)
             command.data
         )
 
-        return ClientMetadata(createArtifactMetadata.name, createArtifactMetadata.type.toArtifactType())
+        return ClientMetadata(createArtifactMetadata.name, createArtifactMetadata.type)
     }
 
     /**

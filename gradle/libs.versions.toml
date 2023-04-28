@@ -1,5 +1,5 @@
 [versions]
-apicurioRegistryClient = "2.3.1.Final"
+apicurioRegistryClient = "2.4.2.Final"
 dokka = "1.7.20"
 kotlin = "1.7.21"
 kotlinxBinaryCompatibilityValidator = "0.12.1"
