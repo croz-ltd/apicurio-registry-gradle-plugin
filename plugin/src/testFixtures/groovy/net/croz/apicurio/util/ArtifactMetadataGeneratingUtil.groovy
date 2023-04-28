@@ -1,7 +1,6 @@
 package net.croz.apicurio.util
 
 import net.croz.apicurio.core.model.GeneratedArtifactMetadata
-import net.croz.apicurio.model.ArtifactType
 
 final class ArtifactMetadataGeneratingUtil {
   private ArtifactMetadataGeneratingUtil() {
@@ -14,9 +13,9 @@ final class ArtifactMetadataGeneratingUtil {
     new GeneratedArtifactMetadata(groupId, artifactId, artifactName, artifactVersion, outputPath)
   }
 
-  final static GeneratedArtifactMetadata generate(ArtifactType artifactType) {
+  final static GeneratedArtifactMetadata generate(String artifactType) {
     def (groupId, artifactId, artifactName, artifactVersion) = generateBaseMetadata()
-    def outputPath = "src/main/${artifactType.name().toLowerCase()}"
+    def outputPath = "src/main/${artifactType.toLowerCase()}"
 
     new GeneratedArtifactMetadata(groupId, artifactId, artifactName, artifactVersion, outputPath)
   }
